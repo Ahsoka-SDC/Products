@@ -1,0 +1,54 @@
+{
+  "id": Number,
+  "name": String,
+  "slogan": String,
+  "description": String,
+  "category": String,
+  "default_price": String,
+  "features": [
+      {
+          "feature": String,
+          "value": String
+      },
+      // ...
+  ],
+  "styles": [
+  	{
+      "style_id": Number,
+      "name": String,
+      "original_price": String,
+      "sale_price": String,
+      "default?": Boolean,
+      "photos": [
+        {
+          "thumbnail_url": String,
+          "url": String
+        },
+        // ...
+      ],
+      "skus": {
+                "37": {
+                      "quantity": Number,
+                      "size": String
+                },
+                "38": {
+                      "quantity": Number,
+                      "size": String
+                },
+                "39": {
+                      "quantity": Number,
+                      "size": String
+                },
+                //...
+      }
+    },
+    // ...
+  ],
+  "related_products": [
+      Number,
+      Number,
+      //...
+  ]
+}
+
+
