@@ -1,4 +1,9 @@
 {
+  "name": "products",
+  "author": "Nick Adam",
+  "scripts": {
+    "server": "node server/app.js"
+  },
   "dependencies": {
     "express": "^4.18.1",
     "fs": "^0.0.1-security",

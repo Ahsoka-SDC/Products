@@ -14,19 +14,19 @@ var loadCSV = (csvFilePath, table) => {
 
 
 // products
-//loadCSV('/users/nickadam/documents/hackreactor/Products/raw_data/product.csv', 'products(id, name, slogan, description, category, default_price)')
+// loadCSV('/users/nickadam/documents/hackreactor/Products/raw_data/product.csv', 'products(id, name, slogan, description, category, default_price)')
 
 // features
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/features.csv`, 'features(id, product_id, feature, value)')
 
 // styles
-// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/styles.csv`, 'styles(id, product_id, name, sale_price, original_price, default_style)')
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/styles.csv`, 'styles(style_id, product_id, name, sale_price, original_price, default_style)')
 
 // skus
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/skus.csv`, 'skus(id, styleId, size, quantity)')
 
 // photos
-//loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/photos.csv`, 'photos(id, styleId, thumbnail_url, url)')
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/photos.csv`, 'photos(id, styleId, thumbnail_url, url)')
 
 // related
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/related.csv`, 'related(id, current_product_id, current_related_id)')

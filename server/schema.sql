@@ -1,4 +1,4 @@
-DROP TABLE products, features, styles, skus, photos, related;
+/--DROP TABLE products, features, styles, skus, photos, related;
 
 
 CREATE TABLE products (
@@ -25,14 +25,14 @@ CREATE TABLE features (
 );
 
 CREATE TABLE styles (
-  id INT NOT NULL,
+  style_id INT NOT NULL,
   product_id INT,
   name VARCHAR(200),
   sale_price VARCHAR(100),
   original_price VARCHAR(100),
   default_style INT,
 
-  PRIMARY KEY(id),
+  PRIMARY KEY(style_id),
   FOREIGN KEY(product_id) REFERENCES products(id)
 
 );
@@ -44,7 +44,7 @@ CREATE TABLE skus (
   quantity VARCHAR(100),
 
   PRIMARY KEY(id),
-  FOREIGN KEY(styleId) REFERENCES styles(id)
+  FOREIGN KEY(styleId) REFERENCES styles(style_id)
 
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE photos (
   url VARCHAR(100000),
 
   PRIMARY KEY(id),
-  FOREIGN KEY(styleId) REFERENCES styles(id)
+  FOREIGN KEY(styleId) REFERENCES styles(style_id)
 
 );
 
