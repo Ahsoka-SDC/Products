@@ -51,8 +51,8 @@ CREATE TABLE skus (
 CREATE TABLE photos (
   id INT NOT NULL,
   styleId INT,
-  thumbnail_url VARCHAR(1000),
-  url VARCHAR(1000),
+  thumbnail_url VARCHAR(100000),
+  url VARCHAR(100000),
 
   PRIMARY KEY(id),
   FOREIGN KEY(styleId) REFERENCES styles(id)

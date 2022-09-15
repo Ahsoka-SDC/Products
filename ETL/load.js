@@ -1,17 +1,39 @@
 const db = require('../server/db');
 
-const csvFilePath = './raw_data/product.csv';
+var loadCSV = (csvFilePath, table) => {
+  db.query(`\COPY ${table} FROM '${csvFilePath}' with (format csv, header true)`,
+  (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res, 'complete');
+    }
+
+  })
+}
 
 
-db.query('\COPY products(id, name, slogan, description, category, default_price) FROM $1 with (format csv, header true)', [csvFilePath],
-(err, res) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(res, 'complete');
-  }
+// products
+//loadCSV('/users/nickadam/documents/hackreactor/Products/raw_data/product.csv', 'products(id, name, slogan, description, category, default_price)')
 
-})
+// features
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/features.csv`, 'features(id, product_id, feature, value)')
+
+// styles
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/styles.csv`, 'styles(id, product_id, name, sale_price, original_price, default_style)')
+
+// skus
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/skus.csv`, 'skus(id, styleId, size, quantity)')
+
+// photos
+//loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/photos.csv`, 'photos(id, styleId, thumbnail_url, url)')
+
+// related
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/related.csv`, 'related(id, current_product_id, current_related_id)')
+
+
+
+
 
 
 
