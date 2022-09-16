@@ -1,11 +1,12 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   database: 'products',
-  user: 'nickadam'
+  user: 'nickadam',
+  max: 500000
 });
 
-client.connect(err => {
+pool.connect(err => {
     if (err) {
       console.error('connection error', err.stack)
     } else {
@@ -22,7 +23,7 @@ client.connect(err => {
 //   }
 // })
 
-module.exports = client;
+module.exports = pool;
 
 
 // client.query('SELECT * FROM messages', (err, res) => {

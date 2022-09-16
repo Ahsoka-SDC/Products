@@ -20,7 +20,7 @@ module.exports.get = (req, res) => {
     if (err) {
       res.status(500).end();
     } else {
-      res.status(200).send(productData)
+      res.status(200).send(productData);
     }
   })
 }

@@ -1,4 +1,4 @@
-/--DROP TABLE products, features, styles, skus, photos, related;
+/*DROP TABLE products, features, styles, skus, photos, related; */
 
 
 CREATE TABLE products (
@@ -30,18 +30,24 @@ CREATE TABLE styles (
   name VARCHAR(200),
   sale_price VARCHAR(100),
   original_price VARCHAR(100),
-  default_style INT,
+  "default?" INT,
 
   PRIMARY KEY(style_id),
   FOREIGN KEY(product_id) REFERENCES products(id)
 
 );
 
+/*
+ALTER TABLE styles ALTER "default?" TYPE bool USING CASE WHEN "default?"=0 THEN FALSE ELSE TRUE END;
+
+UPDATE styles SET sale_price = '0' WHERE sale_price = 'null';
+*/
+
 CREATE TABLE skus (
   id INT NOT NULL,
   styleId INT,
   size VARCHAR(10),
-  quantity VARCHAR(100),
+  quantity INT,
 
   PRIMARY KEY(id),
   FOREIGN KEY(styleId) REFERENCES styles(style_id)

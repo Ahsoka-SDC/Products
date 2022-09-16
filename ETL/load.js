@@ -20,7 +20,7 @@ var loadCSV = (csvFilePath, table) => {
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/features.csv`, 'features(id, product_id, feature, value)')
 
 // styles
-// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/styles.csv`, 'styles(style_id, product_id, name, sale_price, original_price, default_style)')
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/styles.csv`, 'styles(style_id, product_id, name, sale_price, original_price, "default?")')
 
 // skus
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/skus.csv`, 'skus(id, styleId, size, quantity)')
