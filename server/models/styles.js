@@ -8,7 +8,7 @@ var getStylesInfo = (product_id, callback) => {
   (err, stylesResponse) => {
     if (err) {
       console.log(err);
-      //callback(err, null);
+      callback(err, null);
     } else {
       var stylesData = stylesResponse.rows;
       var styleIds = [];
@@ -23,7 +23,7 @@ var getStylesInfo = (product_id, callback) => {
       (err, photosResponse) => {
         if (err) {
           console.log(err);
-          //callback(err, null);
+          callback(err, null);
         } else {
           var photosData = photosResponse.rows;
 
@@ -33,7 +33,7 @@ var getStylesInfo = (product_id, callback) => {
           (err, skusResponse) => {
             if (err) {
               console.log(err);
-              //callback(err, null);
+              callback(err, null);
             } else {
               skusData = skusResponse.rows;
 

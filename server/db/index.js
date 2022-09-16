@@ -15,18 +15,5 @@ pool.connect(err => {
   }
 )
 
-// client.query('SELECT * FROM pg_catalog.pg_tables', (err, res) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(res);
-//   }
-// })
 
 module.exports = pool;
-
-
-// client.query('SELECT * FROM messages', (err, res) => {
-//   console.log(res.rows)
-//   client.end()
-// })
