@@ -26,7 +26,7 @@ var loadCSV = (csvFilePath, table) => {
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/skus.csv`, 'skus(id, styleId, size, quantity)')
 
 // photos
-// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/photos.csv`, 'photos(id, styleId, thumbnail_url, url)')
+// loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/photos.csv`, 'photos(id, styleId, url, thumbnail_url)')
 
 // related
 // loadCSV(`/users/nickadam/documents/hackreactor/Products/raw_data/related.csv`, 'related(id, current_product_id, current_related_id)')
