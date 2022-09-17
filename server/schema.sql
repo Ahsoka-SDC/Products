@@ -12,6 +12,8 @@ CREATE TABLE products (
   PRIMARY KEY(id)
 );
 
+CREATE INDEX products_id_idx ON products (id);
+
 
 CREATE TABLE features (
   id INT NOT NULL,
@@ -23,6 +25,8 @@ CREATE TABLE features (
   FOREIGN KEY(product_id) REFERENCES products(id)
 
 );
+
+CREATE INDEX features_product_id_idx ON features (product_id);
 
 CREATE TABLE styles (
   style_id INT NOT NULL,
@@ -36,6 +40,8 @@ CREATE TABLE styles (
   FOREIGN KEY(product_id) REFERENCES products(id)
 
 );
+
+CREATE INDEX styles_product_id_idx ON styles (product_id);
 
 /*
 ALTER TABLE styles ALTER "default?" TYPE bool USING CASE WHEN "default?"=0 THEN FALSE ELSE TRUE END;
@@ -54,6 +60,8 @@ CREATE TABLE skus (
 
 );
 
+CREATE INDEX skus_styleId_idx ON skus (styleId);
+
 CREATE TABLE photos (
   id INT NOT NULL,
   styleId INT,
@@ -65,6 +73,8 @@ CREATE TABLE photos (
 
 );
 
+CREATE INDEX photos_styleId_idx ON photos (styleId);
+
 CREATE TABLE related (
   id INT NOT NULL,
   current_product_id INT,
@@ -73,6 +83,8 @@ CREATE TABLE related (
   PRIMARY KEY(id)
 
 );
+
+CREATE INDEX related_current_product_id_idx ON related (current_product_id);
 
 
 

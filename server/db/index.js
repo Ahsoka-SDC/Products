@@ -2,8 +2,7 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   database: 'products',
-  user: 'nickadam',
-  max: 500000
+  user: 'nickadam'
 });
 
 pool.connect(err => {
