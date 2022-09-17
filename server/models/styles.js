@@ -3,11 +3,12 @@ var format = require('pg-format');
 
 // use Promise.all to optimize speed?
 
+
 var getStylesInfo = (product_id, callback) => {
   db.query('SELECT style_id, name, original_price, sale_price, "default?" FROM styles WHERE product_id = $1', [product_id],
   (err, stylesResponse) => {
     if (err) {
-      console.log(err);
+      //console.log(err);
       callback(err, null);
     } else {
       var stylesData = stylesResponse.rows;
@@ -22,7 +23,7 @@ var getStylesInfo = (product_id, callback) => {
       db.query(photosQuery,
       (err, photosResponse) => {
         if (err) {
-          console.log(err);
+          //console.log(err);
           callback(err, null);
         } else {
           var photosData = photosResponse.rows;
@@ -32,7 +33,7 @@ var getStylesInfo = (product_id, callback) => {
           db.query(skusQuery,
           (err, skusResponse) => {
             if (err) {
-              console.log(err);
+              //console.log(err);
               callback(err, null);
             } else {
               skusData = skusResponse.rows;
