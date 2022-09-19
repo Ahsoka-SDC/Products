@@ -13,5 +13,8 @@ app.use('/products', router);
 
 
 var PORT = 3000;
-app.listen(PORT);
+var server = app.listen(PORT);
 console.log(`Listening at http://localhost:${PORT}`);
+
+server.keepAliveTimeout = 10;
+server.headersTimeout = 11;
