@@ -2,7 +2,8 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   database: 'products',
-  user: 'nickadam'
+  user: 'nickadam',
+  password: process.env.PGPASSWORD
 });
 
 pool.connect(err => {
