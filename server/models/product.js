@@ -2,24 +2,34 @@ var db = require('../db');
 
 
 var getProductInfo = (id, callback) => {
-  db.query('SELECT * FROM products WHERE id = $1', [id], (err, productResponse) => {
+  db.query(`
+  select json_build_object(
+    'id', p.id,
+    'name', p.name,
+    'slogan', p.slogan,
+    'description', p.description,
+    'category', p.category,
+    'default_price', p.default_price,
+    'features', (
+      select json_agg(json_build_object(
+        'feature', fe.feature,
+        'value', fe.value
+      ))
+      from features fe where fe.product_id = p.id
+    )
+  ) as result
+  from products p
+  where p.id = $1`,
+  [id], (err, productResponse) => {
     if (err) {
-      //console.log(err);
+      console.log(err);
       callback(err, null);
     } else {
-      db.query('SELECT feature, value FROM features WHERE product_id = $1', [id], (err, featuresResponse) => {
-        if (err) {
-          //console.log(err);
-          callback(err, null);
-        } else {
-          var productData = productResponse.rows[0];
-          productData.features = featuresResponse.rows;
-          callback(null, productData);
-
-        }
-      })
+      callback(null, productResponse.rows[0].result);
     }
   })
 }
+
+
 
 module.exports = { getProductInfo };
