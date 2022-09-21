@@ -1,72 +1,42 @@
 var db = require('../db');
-var format = require('pg-format');
-
-// use Promise.all to optimize speed?
 
 
 var getStylesInfo = (product_id, callback) => {
-  db.query('SELECT style_id, name, original_price, sale_price, "default?" FROM styles WHERE product_id = $1', [product_id],
+  db.query(`
+  select json_build_object(
+    'product_id', cast($1 as varchar),
+    'results', (
+      select json_agg(json_build_object(
+        'style_id', st.style_id,
+        'name', st.name,
+        'original_price', st.original_price,
+        'sale_price', st.sale_price,
+        'default?', st."default?",
+        'photos', (
+          select json_agg(json_build_object(
+            'thumbnail_url', p.thumbnail_url,
+            'url', p.url
+          ))
+          from photos p where p.styleId = st.style_id
+        ),
+        'skus', (
+          select json_object_agg(sk.id, json_build_object(
+            'quantity', sk.quantity,
+            'size', sk.size
+          ))
+          from skus sk where sk.styleId = st.style_id
+        )
+      )
+      ) as result from styles st where st.product_id = $2
+    )
+  )`, [product_id.toString(), product_id],
   (err, stylesResponse) => {
     if (err) {
-      //console.log(err);
       callback(err, null);
     } else {
-      var stylesData = stylesResponse.rows;
-      var styleIds = [];
+      var styleData = stylesResponse.rows[0].json_build_object;
 
-      stylesData.forEach((style) => {
-        styleIds.push(style.style_id);
-      })
-
-      let photosQuery = format('SELECT styleId, thumbnail_url, url FROM photos WHERE styleId IN (%L)', styleIds)
-
-      db.query(photosQuery,
-      (err, photosResponse) => {
-        if (err) {
-          //console.log(err);
-          callback(err, null);
-        } else {
-          var photosData = photosResponse.rows;
-
-          let skusQuery = format('SELECT id, styleId, quantity, size FROM skus WHERE styleId IN (%L)', styleIds)
-
-          db.query(skusQuery,
-          (err, skusResponse) => {
-            if (err) {
-              //console.log(err);
-              callback(err, null);
-            } else {
-              skusData = skusResponse.rows;
-
-              stylesData.forEach((style) => {
-                style.photos = [];
-                style.skus = {};
-                photosData.forEach((photo) => {
-                  if (style.style_id === photo.styleid) {
-                    delete photo.styleid;
-                    style.photos.push(photo);
-                  }
-                })
-                skusData.forEach((sku) => {
-                  if (style.style_id === sku.styleid) {
-                    style.skus[sku.id] = {
-                      quantity: sku.quantity,
-                      size: sku.size
-                    }
-                  }
-                })
-              })
-
-              var outputStyleInfo = {
-                product_id: product_id.toString(),
-                results: stylesData
-              }
-
-              callback(null, outputStyleInfo);
-            }
-          })
-        }
-      })
+      callback(null, styleData);
     }
   })
 }
