@@ -5,7 +5,11 @@ var getRelatedInfo = (id, callback) => {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, relatedResponse.rows[0].array_agg);
+      if (relatedResponse.rows[0].array_agg === null) {
+        callback(null, []);
+      } else {
+        callback(null, relatedResponse.rows[0].array_agg);
+      }
     }
   })
 

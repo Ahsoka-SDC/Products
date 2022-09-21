@@ -25,7 +25,11 @@ var getProductInfo = (id, callback) => {
       console.log(err);
       callback(err, null);
     } else {
-      callback(null, productResponse.rows[0].result);
+      if (productResponse.rows.length === 0) {
+        callback(null, `This product does not exist`);
+      } else {
+        callback(null, productResponse.rows[0].result);
+      }
     }
   })
 }
