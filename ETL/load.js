@@ -4,11 +4,7 @@ var loadCSV = (csvFilePath, table) => {
   db.query(`\COPY ${table} FROM '${csvFilePath}' with (format csv, header true)`,
   (err, res) => {
     if (err) {
-      // console.log(err);
-    } else {
-      // console.log(res, 'complete');
     }
-
   })
 }
 
