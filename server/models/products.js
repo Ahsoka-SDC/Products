@@ -6,7 +6,6 @@ var getProducts = (page, count, callback) => {
 
   db.query('SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2', [count, offset], (err, productsResponse) => {
     if (err) {
-      //console.log(err);
       callback(err, null);
     } else {
       callback(null, productsResponse.rows);

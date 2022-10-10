@@ -28,7 +28,6 @@ module.exports.get = (req, res) => {
 
   models.products.getProducts(page, count, (err, productsData) => {
     if (err) {
-      //console.log(err);
       res.status(500).end();
     } else {
       res.status(200).send(productsData);

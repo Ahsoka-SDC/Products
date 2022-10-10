@@ -22,7 +22,6 @@ var getProductInfo = (id, callback) => {
   where p.id = $1`,
   [id], (err, productResponse) => {
     if (err) {
-      console.log(err);
       callback(err, null);
     } else {
       if (productResponse.rows.length === 0) {
