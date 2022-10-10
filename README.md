@@ -11,3 +11,5 @@ The first stage of development was to pick a database to house the data I was gi
 ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?logo=postgresql&logoColor=white&style=flat-square)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat-square&logo=nginx&logoColor=white)
 
+## Engineer
+[Nick Adam](https://github.com/nicholaspix)
