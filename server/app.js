@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use('/products', router);
 
+
 app.get('/loaderio-62ce08f7d1438d86cb02daa392076d21', (req, res) => {
   res.status(200).send('loaderio-62ce08f7d1438d86cb02daa392076d21');
 })

@@ -3,11 +3,11 @@ require('dotenv').config();
 
 
 const pool = new Pool({
-  host: 'ec2-18-191-185-190.us-east-2.compute.amazonaws.com',
-  database: 'products',
-  user: 'nickadam',
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  user: process.env.PGUSER,
   password: process.env.PGPASSWORD,
-  port: '5432'
+  port: process.env.PGPORT
 });
 
 
